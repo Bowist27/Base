@@ -47,8 +47,11 @@ services:
     image: nginx:alpine
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/cloudflare/origin.pem:/etc/nginx/ssl/origin.pem:ro
+      - /etc/cloudflare/origin.key:/etc/nginx/ssl/origin.key:ro
     depends_on:
       - auth-service
 
